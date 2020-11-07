@@ -1,5 +1,5 @@
 FROM tomcat:8
-COPY ../target/*.war /usr/local/tomcat/webapps/
+COPY target/*.war /usr/local/tomcat/webapps/
 ENV ename=myedock eapiname=myeapidock
 ARG pname=mypdock
 EXPOSE 8080

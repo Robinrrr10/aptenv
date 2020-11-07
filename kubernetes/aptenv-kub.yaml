@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+     name: aptenv-deploy
+spec:
+     replicas: 1
+     selector:
+          app: aptenv-pod
+     template:
+          metadata:
+               labels: 
+                    app: aptenv-pod               
+          spec:
+               containers:
+                    - name: aptenv-app
+                      image: robinrrr10/aptenv
+                      env:
+                           - name: ename
+                             value: ekubyml
+                           - name: kubname2
+                             value: ekub2yml
+                           - name: kubname2
+                             value: ekub3yml
+                           - name: cusn
+                             value: ekubcusyml
+                      ports:
+                           - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata
+     name: aptenv-svc
+spec:
+     type: NodePort
+     ports:
+           - nodePort: 31002
+             port: 8080
+             targetPort: 8080
+     selector:
+           app: aptenv-pod

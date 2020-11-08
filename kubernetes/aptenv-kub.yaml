@@ -16,15 +16,14 @@ spec:
                containers:
                     - name: aptenv-app
                       image: robinrrr10/aptenv
-                      envFrom:
-                           - configMapRef:
-                                  name: apt-config
-                                  key: configenv2
                       ports:
                            - containerPort: 8080
                       volumeMounts:
                            - mountPath: /all-config
                              name: config-vol
+                      envFrom:
+                           - configMapRef:
+                                  name: apt-config
                volumes:
                     - name: config-vol
                       configMap:

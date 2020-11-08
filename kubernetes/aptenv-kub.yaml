@@ -24,6 +24,7 @@ spec:
                       envFrom:
                            - configMapRef:
                                   name: apt-config
+                      restartPolicy: Never
                volumes:
                     - name: config-vol
                       configMap:

@@ -16,6 +16,9 @@ spec:
                containers:
                     - name: aptenv-app
                       image: robinrrr10/aptenv
+                      envFrom:
+                           - configMapRef:
+                             name: apt-config
                       ports:
                            - containerPort: 8080
                       volumeMounts:

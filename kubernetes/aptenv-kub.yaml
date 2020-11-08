@@ -16,17 +16,18 @@ spec:
                containers:
                     - name: aptenv-app
                       image: robinrrr10/aptenv
-                      env:
-                           - name: ename
-                             value: ekubyml
-                           - name: kubname2
-                             value: ekub2yml
-                           - name: kubname2
-                             value: ekub3yml
-                           - name: cusn
-                             value: ekubcusyml
                       ports:
                            - containerPort: 8080
+                      volumeMounts:
+                           - mountPath: /all-config
+                             name: config-vol
+               volumes:
+                    - name: config-vol
+                      configMap:
+                           name: apt-config
+                           items:
+                                - key: aptenv.config
+                                  path: apt.conf
 ---
 apiVersion: v1
 kind: Service

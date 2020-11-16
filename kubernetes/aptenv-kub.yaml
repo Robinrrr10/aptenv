@@ -18,9 +18,6 @@ spec:
                       image: robinrrr10/aptenv
                       ports:
                            - containerPort: 8080
-                      volumeMounts:
-                           - mountPath: /all-config
-                             name: config-vol
                       env:
                            - name: ename
                              valueFrom:

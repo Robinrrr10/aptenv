@@ -30,7 +30,6 @@ spec:
                                   configMapKeyRef:
                                        name: apt-config
                                        key: ename
-               restartPolicy: Always
                volumes:
                     - name: config-vol
                       configMap:

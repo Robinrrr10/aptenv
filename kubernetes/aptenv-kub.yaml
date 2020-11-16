@@ -24,6 +24,11 @@ spec:
                                   configMapKeyRef:
                                        name: apt-config
                                        key: ename
+                           - name: configenvone
+                             valueFrom:
+                                  configMapKeyRef:
+                                       name: apt-config
+                                       key: configenv1
 ---
 apiVersion: v1
 kind: Service

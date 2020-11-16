@@ -21,22 +21,12 @@ spec:
                       volumeMounts:
                            - mountPath: /all-config
                              name: config-vol
-                      envFrom:
-                           - configMapRef:
-                                  name: apt-config
                       env:
                            - name: ename
                              valueFrom:
                                   configMapKeyRef:
                                        name: apt-config
                                        key: ename
-               volumes:
-                    - name: config-vol
-                      configMap:
-                           name: apt-config
-                           items:
-                                - key: aptenv.config
-                                  path: apt.conf
 ---
 apiVersion: v1
 kind: Service

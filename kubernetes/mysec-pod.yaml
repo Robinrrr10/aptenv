@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+        name: mys-pod
+spec:
+        containers:
+                - name: mys-apt-con
+                  image: robinrrr10/aptenv
+                  volumeMounts:
+                          - name: s-vol
+                            mountPath: "etc/sec-cred"
+                            readOnly: true
+        volumes:
+                - name: s-vol
+                  secret:
+                          secretName: my-secrets-one

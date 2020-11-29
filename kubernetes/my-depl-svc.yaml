@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: sec-apt-dep
+spec:
+        replicas: 1
+        selector:
+                matchLabels:
+                        app: secret-env-pod
+        template:
+                metadata:
+                        labels:
+                                app: secret-env-pod
+                spec:
+                        containers:
+                                - name: sec-env-cont
+                                  image: robinrrr10/aptenv
+                                  ports:
+                                          - containerPort: 8080
+                                  env:
+                                          - name: USER
+                                            valueFrom:
+                                                    secretKeyRef:
+                                                            name: my-secrets-one
+                                                            key: username
+                                          - name: PASS
+                                            valueFrom:
+                                                    secretKeyRef:
+                                                            name: my-secrets-one
+                                                            key: password
+                                          - name: ename
+                                            valueFrom:
+                                                    secretKeyRef:
+                                                            name: my-secrets-one
+                                                            key: ename
+---
+apiVersion: v1
+kind: Service
+metadata:
+        name: aptenv-sec-svc
+spec:
+        type: LoadBalancer
+        ports:
+                - nodePort: 31002
+                  port: 8080
+                  targetPort: 8080
+        externalIPs:
+                - 192.168.222.55
+        selector:
+                app: secret-env-pod
